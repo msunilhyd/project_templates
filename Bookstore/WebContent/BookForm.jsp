@@ -5,15 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Books Store Application</title>
+<title>Work Order Management Application</title>
 </head>
 <body>
 	<center>
-		<h1>Books Management</h1>
+		<h1>Work Order Management</h1>
 		<h2>
-			<a href="/new">Add New Book</a>
-			&nbsp;&nbsp;&nbsp;
-			<a hred="/list">List All Books</a>
+			<a href="${pageContext.request.contextPath}/list">Home</a>
+		
 		</h2>
 	</center>
 	<div align="center">
@@ -27,10 +26,10 @@
 			<caption>
 				<h2>
 					<c:if test="${book != null }">
-						Edit Book
+						Edit Order
 					</c:if>
 					<c:if test="${book == null }">
-						Add New Book
+						Add Work Order
 					</c:if>
 				</h2>
 			</caption>
@@ -46,7 +45,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th>Author: </th>
+				<th>Name: </th>
 				<td>
 					<input type="text" name="author" size="45"
 						value="<c:out value='${book.author }' />"

@@ -4,17 +4,17 @@
  
   <context-param>
   	<param-name>jdbcURL</param-name>
-  	<param-value>jdbc:mysql://localhost:3306/RAM</param-value>
+  	<param-value>jdbc:mysql://localhost:3306/workOrdersDB</param-value>
   </context-param>
   
   <context-param>
   	<param-name>jdbcUsername</param-name>
-  	<param-value>demo_java</param-value>
+  	<param-value>newuser</param-value>
   </context-param>
   
   <context-param>
   	<param-name>jdbcPassword</param-name>
-  	<param-value>1234</param-value>
+  	<param-value>password</param-value>
   </context-param>
   
   <servlet>
@@ -24,9 +24,46 @@
   
   <servlet-mapping>
   	<servlet-name>ControllerServlet</servlet-name>
-  	<url-pattern>/</url-pattern>
+  	<url-pattern>/new</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerServlet</servlet-name>
+  	<url-pattern>/insert</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerServlet</servlet-name>
+  	<url-pattern>/list</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerServlet</servlet-name>
+  	<url-pattern>/edit</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerServlet</servlet-name>
+  	<url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerServlet</servlet-name>
+  	<url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>UserLoginServlet</servlet-name>
+  	<servlet-class>net.codejava.javaee.bookstore.UserLoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>UserLoginServlet</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
   
    <servlet>
   	<servlet-name>RegisterServlet</servlet-name>

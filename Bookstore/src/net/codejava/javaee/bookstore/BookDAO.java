@@ -43,13 +43,15 @@ public class BookDAO {
 	}
 	
 	public boolean insertBook(Book book) throws SQLException {
-		String sql = "INSERT INTO book (title, author, price) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO book (title, author, price, userId) VALUES (?, ?, ?, ?)";
 		connect();
 		
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
 		statement.setString(1, book.getTitle());
 		statement.setString(2, book.getAuthor());
 		statement.setFloat(3, book.getPrice());
+		statement.setFloat(4, book.getUserId());
+		
 		
 		boolean rowInserted = statement.executeUpdate() > 0;
 		statement.close();
@@ -57,14 +59,22 @@ public class BookDAO {
 		return rowInserted;
 	}
 	
-	public List<Book> listAllBooks() throws SQLException {
+	public List<Book> listAllBooks(User user) throws SQLException {
 		List<Book> listBook = new ArrayList<>();
 		
 		String sql = "SELECT * FROM book";
 		
+		if (user.getUserType().equalsIgnoreCase("user"))
+		{
+			sql = "SELECT * FROM book WHERE userId =  " + user.getId();
+		}
+		
+		System.out.println("sql is = " + sql);
+		
 		connect();
 		
-		Statement statement = jdbcConnection.createStatement();
+		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+				
 		ResultSet resultSet = statement.executeQuery(sql);
 		
 		while (resultSet.next()) {
@@ -72,8 +82,10 @@ public class BookDAO {
 			String title = resultSet.getString("title");
 			String author = resultSet.getString("author");
 			float price = resultSet.getFloat("price");
+			String status = resultSet.getString("status");
 			
-			Book book = new Book(id, title, author, price);
+			
+			Book book = new Book(id, title, author, price, status);
 			listBook.add(book);
 		}
 		
@@ -99,9 +111,14 @@ public class BookDAO {
 		return rowDeleted;
 	}
 	
-	public boolean updateBook(Book book) throws SQLException {
+	public boolean updateBook(Book book, String status) throws SQLException {
 		String sql = "UPDATE book SET title = ?, author = ?, price = ?";
 		sql += "WHERE book_id = ?";
+		
+		if (status != null) {
+			sql = "UPDATE book SET title = ?, author = ?, price = ?, status = " +" '"+status+"' ";
+			sql += "WHERE book_id = ?";
+		}
 		connect();
 		
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
@@ -131,8 +148,10 @@ public class BookDAO {
 			String title = resultSet.getString("title");
 			String author = resultSet.getString("author");
 			float price = resultSet.getFloat("price");
+			String status = resultSet.getString("status");
 			
-			book = new Book(id, title, author, price);
+			
+			book = new Book(id, title, author, price, status);
 		}
 		
 		resultSet.close();

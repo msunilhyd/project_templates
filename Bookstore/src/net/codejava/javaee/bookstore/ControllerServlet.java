@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -31,6 +33,8 @@ public class ControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		String action = request.getServletPath();
+		
+		System.out.println("Hello");
 		
 		try {
 			switch (action) {
@@ -59,7 +63,10 @@ public class ControllerServlet extends HttpServlet {
 	}
 		private void listBook(HttpServletRequest request, HttpServletResponse response)
 		throws SQLException, IOException, ServletException {
-		List<Book> listBook = bookDAO.listAllBooks();
+			HttpSession session = request.getSession();
+			User user = (User) session.getAttribute("user");
+
+		List<Book> listBook = bookDAO.listAllBooks(user);
 		request.setAttribute("listBook", listBook);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("BookList.jsp");
 		dispatcher.forward(request, response);
@@ -74,9 +81,14 @@ public class ControllerServlet extends HttpServlet {
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 		throws SQLException, ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+
 		Book existingBook = bookDAO.getBook(id);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("BookForm.jsp");
 		request.setAttribute("book", existingBook);
+		request.setAttribute("userType", user.getUserType());
+
 		dispatcher.forward(request, response);
 	}
 	
@@ -85,8 +97,13 @@ public class ControllerServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		float price = Float.parseFloat(request.getParameter("price"));
+
 		
-		Book newBook = new Book(title, author, price);
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		System.out.println("user id is = " + user.getId());
+		
+		Book newBook = new Book(title, author, price, user.getId());
 		bookDAO.insertBook(newBook);
 		response.sendRedirect("list");
 	}
@@ -97,9 +114,18 @@ public class ControllerServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		float price = Float.parseFloat(request.getParameter("price"));
-		
+		String status = request.getParameter("status");
 		Book book = new Book(id, title, author, price);
-		bookDAO.updateBook(book);
+
+		System.out.println("book status is = " + status);
+		System.out.println("book price is = " + price);
+		
+		
+		if (status != null) {
+			book = new Book(id, title, author, price, status);
+		}
+		
+		bookDAO.updateBook(book, status);
 		response.sendRedirect("list");
 	}
 	

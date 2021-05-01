@@ -6,7 +6,17 @@ public class Book {
 	protected String title;
 	protected String author;
 	protected float price;
+	protected String status;
+	protected int userId;
 	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public Book() {
 		
 	}
@@ -26,6 +36,21 @@ public class Book {
 		this.price = price;
 	}
 	
+	public Book(int id, String title, String author, float price, String status) {
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.price = price;
+		this.status = status;
+	}
+	
+	public Book(String title, String author, float price, int userId) {
+		this.title = title;
+		this.author = author;
+		this.price = price;
+		this.userId = userId;
+	}
+	
 	public int getId() {
         return id;
     }
@@ -34,7 +59,15 @@ public class Book {
         this.id = id;
     }
  
-    public String getTitle() {
+    public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getTitle() {
         return title;
     }
  

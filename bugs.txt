@@ -1,0 +1,7 @@
+Communications Link falure in java servlet tomcat
+  - bind address of mysql to 172.0.0.1
+https://phoenixnap.com/kb/mysql-docker-container
+
+
+fatal: in unpopulated submodule RAM_House_Service_working
+  - git rm --cached . -rf

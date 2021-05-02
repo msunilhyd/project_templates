@@ -337,6 +337,13 @@ h2::after {
 	bottom: -20px;
 }
 
+
+.content {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
 .dropdown-menu li, .cust-hand {
 	cursor: pointer;
 }
@@ -393,23 +400,10 @@ var maintainplus = '';
 		<!-- Collection of nav links, forms, and other content for toggling -->
 		<div id="navbarCollapse"
 			class="collapse navbar-collapse justify-content-start">
-			<ul class="nav navbar-nav">
-				<li class="nav-item"><a href="javascript:history.go(0)" class="nav-link">Home</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">About</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Profile</a></li>
-				<li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-				
+			<ul class="nav navbar-nav">				
 				<li class="nav-item"><a href="RAMController?action=logout"
 					class="nav-link">LogOut</a></li>
 			</ul>
-			<form class="navbar-form form-inline">
-				<div class="input-group search-box">
-					<input type="text" id="search" class="form-control"
-						placeholder="Search here..."> <span
-						class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-				</div>
-			</form>
-
 		</div>
 	</nav>
 	
@@ -422,29 +416,13 @@ var maintainplus = '';
 	
 	
 	<c:if test="${message ne null }">
-		<h3> ${message} </h3>
+		<h3 class="content"> ${message} </h3>
 	</c:if>
 	
 
 <div class="container">
          <div class="col-md-9 col-sm-12 col-xs-12">
             <br/><br/>
-            <nav class="navbar navbar-inverse">
-               <div class="container-fluid">
-                  <ul class="nav navbar-nav">
-                     <li><a onclick="doAction('home')" class="cust-hand">Home</a></li>
-                     <li><a onclick="doAction('bids')" class="cust-hand">View Bids</a></li>
-                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Skill <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                           <li><a onclick="doAction('add_skill')">Add Skill</a></li>
-                           <li><a onclick="doAction('list_service')">List of Skills</a></li>
-                        </ul>
-                     </li>                    
-                     
-                  </ul>
-               </div>
-            </nav>
             <div class="col-sm-12 col-md-12">
 			
 				<div class="all_details" id="home">
@@ -471,13 +449,16 @@ var maintainplus = '';
                            <td>${work.description}</td>	
                            <c:choose>		
                            	<c:when test="${work.status eq true}">		   
-						   		<td>Active</td>
+						   		<td>Pending</td>
 						   	</c:when>
 						   	<c:otherwise>
-						   		<td>Closed</td>
+						   		<td>Done</td>
 						   	</c:otherwise>
 						   </c:choose>
-						   <td ><a onclick="bidThis(${work.id})"><button class="btn bnt-sm btn-primary cust-smll-btn">Bid</button></a></td>
+						 
+											
+						   <td ><button type="button" class="btn btn-primary"
+												onclick="apvlForm('Y', '${work.id}')">Update</button></td>
                         </tr>
                         </c:forEach>
                      </tbody>
@@ -627,8 +608,24 @@ var maintainplus = '';
             	$('#'+type).show();
             };
 			function bidThis(index){
+
 				$('#work_id').val(index);
 				$('#myModal').modal('show');
+			};
+
+			function apvlForm(type, workid){
+				console.log('Hellow');
+
+				$.ajax({
+					url: 'RAMController',
+					type: 'POST',
+					data: {'workid':workid, 'action': 'accepting', 'type': type},
+					success:function(response){
+					    window.location.reload();		
+					},
+					error:function(){}
+					
+				});
 			};
          </script>
       </div>

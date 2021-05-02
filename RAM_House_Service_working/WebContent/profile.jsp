@@ -349,27 +349,23 @@ h2::after {
 
 
 
-<script type="text/javascript">	
- 	
-		// Prevent dropdown menu from closing when click inside the form
-	$(document).on("click", ".navbar-right .dropdown-menu", function(e){
+<script type="text/javascript">
+	// Prevent dropdown menu from closing when click inside the form
+	$(document).on("click", ".navbar-right .dropdown-menu", function(e) {
 		e.stopPropagation();
-	});	
-	
+	});
 
-function validatephone(phone) 
-{
-var maintainplus = '';
-var numval = phone.value	
-if ( numval.charAt(0)=='+' )
-{
-    var maintainplus = '';
-}
-curphonevar = numval.replace(/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g,'');
-phone.value = maintainplus + curphonevar;
-var maintainplus = '';	
-}	
-
+	function validatephone(phone) {
+		var maintainplus = '';
+		var numval = phone.value
+		if (numval.charAt(0) == '+') {
+			var maintainplus = '';
+		}
+		curphonevar = numval.replace(
+				/[\\A-Za-z!"£$%^&\,*+_={};:'@#~,.Š\/<>?|`¬\]\[]/g, '');
+		phone.value = maintainplus + curphonevar;
+		var maintainplus = '';
+	}
 </script>
 
 </head>
@@ -377,7 +373,7 @@ var maintainplus = '';
 <body>
 	<nav class="navbar navbar-default navbar-expand-lg navbar-light">
 		<div class="navbar-header d-flex col">
-			<a class="navbar-brand" href="RAMController?action=user_home">House<b>Joy</b></a>
+			<a class="navbar-brand" href="RAMController?action=user_home">House<b>Services</b></a>
 			<button type="button" data-target="#navbarCollapse"
 				data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
 				<span class="navbar-toggler-icon"></span> <span class="icon-bar"></span>
@@ -388,149 +384,93 @@ var maintainplus = '';
 		<div id="navbarCollapse"
 			class="collapse navbar-collapse justify-content-start">
 			<ul class="nav navbar-nav">
-				<li class="nav-item"><a href="RAMController?action=user_home" class="nav-link">Home</a></li>
+				<li class="nav-item"><a href="RAMController?action=user_home"
+					class="nav-link">Home</a></li>
 				<li class="nav-item"><a href="RAMController?action=logout"
 					class="nav-link">LogOut</a></li>
 			</ul>
-			<form class="navbar-form form-inline">
-				<div class="input-group search-box">
-					<input type="text" id="search" class="form-control"
-						placeholder="Search here..."> <span
-						class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-				</div>
-			</form>
-
 		</div>
 	</nav>
-	
-	
-	<c:if test="${user eq null}">	
-	   <%
-	    response.sendRedirect("home.jsp");			
-	   %>
+
+
+	<c:if test="${user eq null}">
+		<%
+			response.sendRedirect("home.jsp");
+		%>
 	</c:if>
-	
+
 
 	<c:if test="${message ne null }">
 		<h3>${message}</h3>
 	</c:if>
-	
-	
-	
+
+
+
 	<div class="container">
 		<div class="col-md-9 col-sm-12 col-xs-12">
-			<h2>
-				Reliable <b>Services</b>
-			</h2>
-			<br /> <br />
-			<nav class="navbar navbar-inverse">
-				<div class="container-fluid">
-					<ul class="nav navbar-nav">
-						<li><a onclick="doAction('posted_works')" class="cust-hand">Works
-								Posted</a></li>
-
-					</ul>
-				</div>
-			</nav>
 			<div class="col-sm-12 col-md-12">
-
-				<div class="all_details" id="view_bids" style="display: none;">
-					<h3>Available Bids</h3>
+				<div class="all_details" id="posted_works">
+					<h3>Posted Works</h3>
 					<table id="add_form_tbl" class="table table-bordered">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Mobile</th>
-								<th>ServiceType</th>
-								<th>Bid_Price</th>
-								<th>Bid_Date</th>
-								<th>Bid_Status</th>
+								<th>Service Type</th>
+								<th>Posted_Date</th>
+								<th>Description</th>
+								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody id="tbl_data">
-
-							<c:forEach items="${bidsList}" var="bid">
-								<tr id="${bid.force.id}${bid.work.id}">
-									<td>${bid.force.name}</td>
-									<td>${bid.force.mobileNumber}</td>
-									<td>${bid.serviceType.description}</td>
-									<td>${bid.bidPrice}</td>
-									<td>${bid.bidDate}</td>
-									<td>Open</td>
-
-									<td>
-										<div class="btn-group">
-											<button type="button" class="btn btn-primary"
-												onclick="apvlForm('A', '${bid.force.id}', '${bid.work.id}')">Accept</button>
-											
-										</div>
-									</td>
+							<c:forEach items="${worksList}" var="work">
+								<tr>
+									<td>${work.service.description}</td>
+									<td>${work.postedDate}</td>
+									<td>${work.description}</td>
+									<c:choose>
+										<c:when test="${work.status eq true}">
+											<td>Active</td>
+										</c:when>
+										<c:otherwise>
+											<td>Closed</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
-
-				<div class="all_details" id="posted_works">
-					<h3>Posted Works</h3>
-					<table id="add_form_tbl" class="table table-bordered">
-                     <thead>
-                        <tr>
-                           <th>Service Type</th>
-                           <th>Posted_Date</th>                           
-						   <th>Description</th>
-						   <th>Status</th>						   
-                        </tr>
-                     </thead>
-                     <tbody id="tbl_data">
-                     <c:forEach items="${worksList}" var="work">
-                        <tr> 
-                           <td>${work.service.description}</td>                          
-                           <td>${work.postedDate}</td>
-                           <td>${work.description}</td>	
-                           <c:choose>		
-                           	<c:when test="${work.status eq true}">		   
-						   		<td>Active</td>
-						   	</c:when>
-						   	<c:otherwise>
-						   		<td>Closed</td>
-						   	</c:otherwise>
-						   </c:choose>						
-                        </tr>
-                        </c:forEach>
-                     </tbody>
-                  </table>				
-				</div>					
 			</div>
-		</div>			
-		
-		
-		
+		</div>
+
+
+
 		<script>
-		
-		
-            function doAction(type){
-            	$('.all_details').hide();	
-            	$('#'+type).show();
-            };			
-			
-						
-			
-			function apvlForm(type, userId, workId){
+			function doAction(type) {
+				$('.all_details').hide();
+				$('#' + type).show();
+			};
+
+			function apvlForm(type, userId, workId) {
 				$.ajax({
-					url: 'RAMController',
-					type: 'POST',
-					data: {'userId':userId, 'workId': workId, 'action': 'acceptBid', 'type': type},
-					success:function(response){
-						
-							$('#'+userId+workId).remove();					
-						
+					url : 'RAMController',
+					type : 'POST',
+					data : {
+						'userId' : userId,
+						'workId' : workId,
+						'action' : 'acceptBid',
+						'type' : type
 					},
-					error:function(){}
-					
+					success : function(response) {
+
+						$('#' + userId + workId).remove();
+
+					},
+					error : function() {
+					}
+
 				});
 			};
-         </script>
+		</script>
 	</div>
 </body>
 </html>

@@ -463,7 +463,7 @@ $(document).ready(function (e) {
 <body>
 <nav class="navbar navbar-default navbar-expand-lg navbar-light">
 	<div class="navbar-header d-flex col">
-		<a class="navbar-brand" href="#">House<b>Joy</b></a>  		
+		<a class="navbar-brand" href="#">House<b>Services</b></a>  		
 		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
 			<span class="navbar-toggler-icon"></span>
 			<span class="icon-bar"></span>
@@ -491,12 +491,7 @@ $(document).ready(function (e) {
 							<input type="submit" name="action" class="btn btn-primary btn-block" value="Login As User">
 							<div class="or-seperator"><b>or</b></div>
 							<input type="submit" name="action" class="btn btn-primary btn-block" value="Login As Force">
-							<div class="or-seperator"><b>or</b></div>
-							<input type="submit" name="action" class="btn btn-primary btn-block" value="Login As Admin">
 							
-							<div class="form-footer">
-								<a href="#">Forgot Your password?</a>
-							</div>
 						</form>
 					</li>
 				</ul>
@@ -519,9 +514,6 @@ $(document).ready(function (e) {
 							</div>
 							<div class="form-group">
 								<input type="password" class="form-control" placeholder="Password" name="upwd" id="upwd"  required="required">
-							</div>							
-							<div class="form-group">
-								<label class="checkbox-inline"><input type="checkbox" name="uaccept" required="required"> I accept the <a href="#">Terms &amp; Conditions</a></label>
 							</div>
 							<input type="hidden" name="action" value="signUpUser" />
 							<input type="submit" class="btn btn-primary btn-block" value="Sign up">
@@ -548,15 +540,6 @@ $(document).ready(function (e) {
 							<div class="form-group">
 								<input type="password" class="form-control" placeholder="Password" name="fpwd" id="fpwd" required="required">
 							</div>							
-							<div class="form-group">								
-								<h5> Upload your Aadhar scan copy : </h5>
-								<input type="file" name="file" id="file" required>
-							</div>
-							<div class="form-group">
-								<br>
-								<label class="checkbox-inline"><input type="checkbox" id="faccept" name="faccept" required="required"> I accept the <a href="#">Terms &amp; Conditions</a></label>
-							</div>
-							<br>							
 							<div id="message"></div>
 							<input type="hidden" name="action" value="signUpForce" />
 							<input type="submit" name="formType" class="btn btn-primary btn-block" value="Sign up">
@@ -573,191 +556,12 @@ $(document).ready(function (e) {
 	<h3> ${message} </h3>
 </c:if>
  
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h2>Reliable <b>Services</b></h2>
-			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
-			<!-- Carousel indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-			</ol>   
-			<!-- Wrapper for carousel items -->
-			<div class="carousel-inner">
-				<div class="item carousel-item active">				
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/HomeAppliances.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Home Appliances</h6>
-									
-								</div>						
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/Beauty.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Beauty</h6>
-									
-								</div>						
-							</div>
-						</div>		
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/Cleaning.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>House Keeping</h6>									
-								</div>						
-							</div>
-						</div>								
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/ElectricalWork.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Electrical</h6>
-									
-								</div>						
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item carousel-item">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/Carpentry.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Carpentry</h6>									
-								</div>						
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/Plumbing.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Plumbing</h6>									
-								</div>						
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/Painting.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Painting</h6>
-									
-								</div>						
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/PestControl.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Pest Control</h6>
-									
-								</div>						
-							</div>
-						</div>						
-					</div>
-				</div>
-				<div class="item carousel-item">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/Plantation.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Plantation</h6>									
-								</div>						
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/Events.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Event Organising</h6>									
-								</div>						
-							</div>
-						</div>
-						<div class="col-sm-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="img/catagory-img/Laundry.jpg" class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h6>Plumbing</h6>									
-								</div>						
-							</div>
-						</div>	
-						
-					</div>
-					
-				</div>
-			</div>
-			
-			
-			
-			<!-- Carousel controls -->
-			<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
-				<i class="fa fa-angle-left"></i>
-			</a>
-			<a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
-				<i class="fa fa-angle-right"></i>
-			</a>
-		</div>
-		</div>
-	</div>
-</div>
+ <center>
+ 
+ <h1> Welcome to RAM House Services</h1>
+<h2> By Rahul and Manohar</h2>
 
-
-
-<div class="bs-example">
-    <div class="container">
-    <c:set var="size" value="${categories.size()}" />
-  	<c:set var="cntr" value="1" />  
-    
-                
-        <c:forEach var="category" items="${categories}"> 
-          <c:if test="${cntr % 4 eq 1}">
-        	<div class="row">
-          </c:if>
-            <div class="col-xs-3">
-                <a href="#" class="thumbnail">
-                    <img src="img/catagory-img/${category.categoryImage}" class="img-circle" alt="125x125" />
-                    <h6> ${category.getType()} </h6>
-                </a>
-            </div>    
-            <c:if test="${cntr % 4 eq 0}">       
-        	</div> 
-        	  </c:if>
-        	  
-        	  <c:set var="cntr" value="${cntr + 1}" />
-       </c:forEach>      
-         
-         
-    </div>
+ </center>
 </body>
 
 </html>

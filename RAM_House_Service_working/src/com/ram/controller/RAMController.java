@@ -3,6 +3,9 @@ package com.ram.controller;
 import javax.servlet.annotation.*;
 import com.ram.service.*;
 import javax.servlet.*;
+
+import com.ram.dao.ForceDAO;
+import com.ram.dao.WorkDAO;
 import com.ram.dto.*;
 import java.io.*;
 import javax.servlet.http.*;
@@ -16,9 +19,6 @@ public class RAMController extends HttpServlet
         final String action = request.getParameter("action");
         
         System.out.println("action is ==== " + action);
-        
-        
-        
         
         if (action == null) {
             request.setAttribute("categories", (Object)new RAMService().getCategories());
@@ -37,6 +37,7 @@ public class RAMController extends HttpServlet
             final User user = (User)session.getAttribute("user");
             request.setAttribute("worksList", (Object)new RAMService().getActiveWorks(user.getId()));
             request.getRequestDispatcher("userhome.jsp").forward((ServletRequest)request, (ServletResponse)response);
+            return;
         }
         if (action.equals("user_profile")) {
             final HttpSession session = request.getSession();
@@ -44,6 +45,7 @@ public class RAMController extends HttpServlet
             request.setAttribute("worksList", (Object)new RAMService().getActiveWorks(user.getId()));
             request.setAttribute("services", (Object)new RAMService().getServiceTypes());
             request.getRequestDispatcher("profile.jsp").forward((ServletRequest)request, (ServletResponse)response);
+            return;
         }
         if (action.equals("logout")) {
             final HttpSession session = request.getSession(false);
@@ -55,7 +57,7 @@ public class RAMController extends HttpServlet
             request.getRequestDispatcher("home.jsp").forward((ServletRequest)request, (ServletResponse)response);
             return;
         }
-        if (Integer.parseInt(action) > 100 && Integer.parseInt(action) < 200) {
+        if ( Integer.parseInt(action) > 100 && Integer.parseInt(action) < 200 ) {
             request.setAttribute("category", (Object)new RAMService().getCategory(Integer.parseInt(action)));
             request.setAttribute("subcategories", (Object)new RAMService().getSubCategories(Integer.parseInt(action)));
             request.getRequestDispatcher("subcategories.jsp").forward((ServletRequest)request, (ServletResponse)response);
@@ -73,10 +75,7 @@ public class RAMController extends HttpServlet
     protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
         final String action = request.getParameter("action");
 //		String action = request.getServletPath();
-
-        System.out.println("Action Jackson is === " + action);
-        
-        
+                
         if ("Login As User".equalsIgnoreCase(action)) {
             final String email = request.getParameter("loginEmail");
             final String password = request.getParameter("loginPassword");
@@ -118,6 +117,9 @@ public class RAMController extends HttpServlet
             final String email = request.getParameter("loginEmail");
             final String password = request.getParameter("loginPassword");
             final Force force = new RAMService().loginForce(email, password);
+            
+            System.out.println("force in db is = " + force);
+            
             if (force != null) {
                 request.getSession().setAttribute("force", (Object)force);
                 request.setAttribute("categories", (Object)new RAMService().getCategories());
@@ -262,16 +264,18 @@ public class RAMController extends HttpServlet
             }
         }
         else if (action.equals("accepting")) {
-            final int userId = Integer.parseInt(request.getParameter("userid"));
-            final int serviceId = Integer.parseInt(request.getParameter("serviceid"));
-            final char status = request.getParameter("type").charAt(0);
-            if (new RAMService().approveForce(userId, serviceId, status)) {
-                request.setAttribute("message", (Object)"approved successfully");
-                request.setAttribute("categories", (Object)new RAMService().getCategories());
-                request.setAttribute("subcategories", (Object)new RAMService().getSubCategories());
-                request.setAttribute("services", (Object)new RAMService().getServiceTypes());
-                request.setAttribute("unapprovedskills", (Object)new RAMService().getUnapprovedSkillsList());
-                request.getRequestDispatcher("adminhome.jsp").forward((ServletRequest)request, (ServletResponse)response);
+        	System.out.println("Came to accepting in RAMController");
+            final int workid = Integer.parseInt(request.getParameter("workid"));
+
+            if (new WorkDAO().changeStatus(workid)) {
+            	System.out.println("Updated work with workId = " + workid);
+            	request.setAttribute("message", "Skill added Successfully");
+				request.setAttribute("categories", new RAMService().getCategories());
+				request.setAttribute("subcategories", new RAMService().getSubCategories());
+				request.setAttribute("services", new RAMService().getServiceTypes());
+				request.setAttribute("works", new RAMService().getActiveWorks(1234));
+				request.getRequestDispatcher("forcehome.jsp").forward(request, response);
+			
             }
         }
 		else if(action.equalsIgnoreCase("add_skill")){

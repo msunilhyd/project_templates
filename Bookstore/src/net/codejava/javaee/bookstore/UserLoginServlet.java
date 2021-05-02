@@ -25,6 +25,10 @@ private BookDAO bookDAO;
 		String jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
 		String jdbcPassword = getServletContext().getInitParameter("jdbcPassword");
 		
+		
+		String num = "1234";
+		int num2 = Integer.parseInt(num);
+		System.out.println("num2 is " + num2);
 		bookDAO = new BookDAO(jdbcURL, jdbcUsername, jdbcPassword);
 	}
 	

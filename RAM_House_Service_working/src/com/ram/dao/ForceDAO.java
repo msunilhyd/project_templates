@@ -14,6 +14,11 @@ public class ForceDAO {
 		PreparedStatement ps = null;
 		Force force = null;	
 
+		System.out.println("Logging in as force");
+		System.out.println("email = " + email);
+		System.out.println("pass = " + password);
+		
+		
 		try {
 
 			con = DBUtility.getConnection();
@@ -31,7 +36,6 @@ public class ForceDAO {
 				force.setEmailId(rs.getString("email"));
 				force.setMobileNumber(rs.getLong("mobile_number"));
 				force.setRegistrationDate(rs.getDate("register_date"));
-				force.setAadharImage(rs.getString("aadhar_image"));					
 			
 				return force;
 			}

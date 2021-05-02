@@ -373,8 +373,6 @@ h2::after {
 
 
 
-	<img src="img/catagory-img/${category.categoryImage}" width=200
-		height=200>
 
 	<div class="bs-example">
 		<div class="container">
@@ -388,8 +386,6 @@ h2::after {
 				</c:if>
 				<div class="col-xs-3">
 					<a href="RAMController?action=${subcategory.id}" class="thumbnail"> 
-					<img src="img/bg-img/${subcategory.subCategoryImage}"
-						class="img-circle" alt="125x125" />
 						<h6>${subcategory.type}</h6>
 					</a>
 				</div>

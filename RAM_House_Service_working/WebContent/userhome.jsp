@@ -334,6 +334,12 @@ h2::after {
 	bottom: -20px;
 }
 
+.content {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
 .dropdown-menu li, .cust-hand {
 	cursor: pointer;
 }
@@ -361,7 +367,7 @@ h2::after {
 <body>
 	<nav class="navbar navbar-default navbar-expand-lg navbar-light">
 		<div class="navbar-header d-flex col">
-			<a class="navbar-brand" href="RAMController?action=user_home">House<b>Joy</b></a>
+			<a class="navbar-brand" href="RAMController?action=user_home">House<b>Services</b></a>
 			<button type="button" data-target="#navbarCollapse"
 				data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
 				<span class="navbar-toggler-icon"></span> <span class="icon-bar"></span>
@@ -391,22 +397,10 @@ h2::after {
 	
 	
 	<c:if test="${message ne null }">
-		<h3> ${message} </h3>
+		<h3 class="content"> ${message} </h3>
 	</c:if>
 
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h2>
-					Reliable <b>Services</b>
-				</h2>
-
-			</div>
-		</div>
-	</div>
-	
-	
 
 	<div class="bs-example">
 		<div class="container">
@@ -420,9 +414,8 @@ h2::after {
 				</c:if>
 				<div class="col-xs-3">
 					<a href="RAMController?action=${category.id}"
-						class="thumbnail"> <img
-						src="img/catagory-img/${category.categoryImage}"
-						class="img-circle" alt="125x125" />
+						class="thumbnail">
+
 						<h6>${category.type}</h6>
 					</a>
 				</div>

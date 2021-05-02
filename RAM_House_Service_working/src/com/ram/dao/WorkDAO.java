@@ -86,8 +86,8 @@ public class WorkDAO
         List<Work> worksList = null;
         try {
             con = DBUtility.getConnection();
-            ps = con.prepareStatement("select * from work where user_id = ? ");
-            ps.setInt(1, userId);
+            ps = con.prepareStatement("select * from work;");
+//            ps.setInt(1, userId);
             rs = ps.executeQuery();
             worksList = new ArrayList<Work>();
             while (rs.next()) {

@@ -73,10 +73,7 @@ public class RAMService
     public User loginUser(final String email, final String password) {
         return UserDAO.login(email, password);
     }
-    
-    public User loginAdmin(final String email, final String password) {
-        return UserDAO.loginAdmin(email, password);
-    }
+
     
     public User getUserDetails(final int userId) {
         return new UserDAO().get(userId);

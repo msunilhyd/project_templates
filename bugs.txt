@@ -5,3 +5,6 @@ https://phoenixnap.com/kb/mysql-docker-container
 
 fatal: in unpopulated submodule RAM_House_Service_working
   - git rm --cached . -rf
+
+Eclipse Build path unbound entries in external libraries
+  - remove it

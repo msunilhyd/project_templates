@@ -4,7 +4,7 @@
  
   <context-param>
   	<param-name>jdbcURL</param-name>
-  	<param-value>jdbc:mysql://localhost:3306/workOrdersDB</param-value>
+  	<param-value>jdbc:mysql://localhost:3306/moviedb</param-value>
   </context-param>
   
   <context-param>

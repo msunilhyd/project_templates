@@ -1,0 +1,4 @@
+With Duplicates = c, g, q, m, g, b, j, v, h, o, c, w, i, z, a, z, c, r, a, z, x, r, v, y, a, c, o, t, q, m, s, c, e, v, v, b, p, r, t, n, h, x, t, o, j, v, r, a, w, x, i, e, l, s, v, v, i, c, s, y, h, s, g, a, b, n, z, m, i, o, i, n, j, j, r, f, o, a, a, b, e, p, j, a, x, p, f, d, a, b, u, c, g, c, v, h, g, l, w, o, 
+Without Duplicates = c, g, q, m, b, j, v, h, o, w, i, z, a, r, x, y, t, s, e, p, n, l, f, d, u, 
+With Duplicates = 2, 9, 2, 8, 6, 7, 9, 7, 9, 7, 1, 6, 1, 1, 7, 0, 9, 6, 4, 8, 0, 8, 8, 0, 4, 3, 4, 9, 3, 4, 8, 4, 4, 4, 7, 8, 8, 9, 0, 7, 5, 3, 5, 0, 5, 5, 6, 1, 4, 3, 1, 7, 1, 5, 8, 7, 1, 4, 8, 7, 0, 2, 9, 0, 2, 0, 8, 1, 3, 3, 4, 0, 5, 4, 4, 1, 4, 4, 6, 8, 5, 9, 7, 4, 5, 0, 0, 5, 8, 2, 6, 4, 9, 2, 1, 7, 5, 1, 9, 0, 
+Without Duplicates = 2, 9, 8, 6, 7, 1, 0, 4, 3, 5, 

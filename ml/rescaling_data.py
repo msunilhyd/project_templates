@@ -14,3 +14,24 @@ from sklearn.preprocessing import StandardScaler
 scaler=StandardScaler().fit(x)
 rescaledX=scaler.transform(x)
 rescaledX[0:5,:]
+
+from sklearn.preprocessing import Normalizer
+scaler=Normalizer().fit(x)
+normalizedX=scaler.transform(x)
+normalizedX[0:5,:]
+
+from sklearn.preprocessing import Binarizer
+binarizer=Binarizer(threshold=0.0).fit(x)
+binaryX=binarizer.transform(x)
+binaryX[0:5,:]
+
+from sklearn.preprocessing import scale
+data_standardized=scale(df)
+data_standardized.mean(axis=0)
+
+data_standardized.std(axis=0)
+
+
+Hello Sunil
+
+linhsRadcliffe
